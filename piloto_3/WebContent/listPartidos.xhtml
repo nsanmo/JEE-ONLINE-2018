@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <link rel="stylesheet" type="text/css" href="style.css" ></link>
+        <title>Liga de Futbol</title>
+    </h:head>
+    <h:body>
+  
+ 	<f:view>
+		<h:form id="partidoList">
+
+		   <h:panelGrid id="MainGrid" columns="1" columnClasses="columnGrid" styleClass="mainGrid">
+		    
+			<h:dataTable id="partidos" 
+						 value="#{PartidoBean.partidos}" 
+						 var="partido" 
+						 styleClass="mainTable"
+						 columnClasses="columnTable columnTable1,columnTable columnTable2,columnTable columnTable3,columnTable columnTable4,columnTable columnTable5,columnTable columnTable6">   
+			  <h:column >
+			    <f:facet name="header">
+			     <h:outputText  value="#{msgs['list.jornada']}"/>
+			    </f:facet>
+			    <h:outputText value="#{partido.jornada}" >
+			    </h:outputText>
+			  </h:column>
+			  <h:column >
+			    <f:facet name="header">
+			     <h:outputText  value="#{msgs['list.fecha']}"/>
+			    </f:facet>
+			    <h:outputText value="#{partido.fecha}" >
+			    <f:convertDateTime pattern="dd/MM/yyyy"/>
+			    </h:outputText>
+			  </h:column>
+			  <h:column >
+			    <f:facet name="header">
+			     <h:outputText  value="#{msgs['list.local']}"/>
+			    </f:facet>
+			    <h:outputText value="#{partido.equipoByIdEquipoLocal.nombre}" >
+			    </h:outputText>
+			  </h:column>
+			  <h:column >
+			    <f:facet name="header">
+			     <h:outputText  value="#{msgs['list.resultado']}"/>
+			    </f:facet>
+			    <h:outputText value="#{partido.golesLocal}-#{partido.golesVisitante}" >
+			    </h:outputText>
+			  </h:column>
+			  <h:column >
+			    <f:facet name="header">
+			     <h:outputText  value="#{msgs['list.visitante']}"/>
+			    </f:facet>
+			    <h:outputText value="#{partido.equipoByIdEquipoVisitante.nombre}" >
+			    </h:outputText>
+			  </h:column>
+			  <h:column >
+			    <f:facet name="header">
+			     <h:outputText  value="#{msgs['list.observaciones']}"/>
+			    </f:facet>
+			    <h:outputText value="#{partido.observaciones}" >
+			    </h:outputText>
+			  </h:column>
+			 
+			  <!--  Command Links -->			 
+			  <h:column >
+			    <f:facet name="header">
+			     <h:outputText  value="#{msgs['list.editarLink']}"/>
+			    </f:facet>
+			    <h:commandLink action="editPartido" actionListener="#{LigaBean.loadPartido}">
+			    	<h:outputText value="#{msgs['list.editarLink']}"></h:outputText>
+			    	<f:param name="selectedPartido" value="#{partido.idPartido}"></f:param>
+			    </h:commandLink>
+			  </h:column>
+			  <h:column >
+			    <f:facet name="header">
+			     <h:outputText  value="#{msgs['list.elimnarLink']}"/>
+			    </f:facet>
+			    <h:commandLink action="listPartidos" onclick="return confirm('#{msgs['lista.seguroBorrar']}')" actionListener="#{LigaBean.borrarPartido}">
+			    	<h:outputText value="#{msgs['list.elimnarLink']}"></h:outputText>
+			    	<f:param name="selectedPartido" value="#{partido.idPartido}"></f:param>
+			    </h:commandLink>
+			  </h:column>
+		</h:dataTable> 
+		</h:panelGrid>
+		
+		<h:panelGrid>
+			<h:commandButton value="Nuevo" action="editPartido" actionListener="#{LigaBean.loadPartido}"></h:commandButton>
+		</h:panelGrid>
+		
+		
+		</h:form>
+	</f:view>
+
+	</h:body>
+</html>
