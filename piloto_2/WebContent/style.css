@@ -1,0 +1,111 @@
+@CHARSET "ISO-8859-1";
+
+body {
+     background: url(./images/glossymetal.jpg) repeat scroll left top; 
+}
+
+.cabecera{
+	width:100%;
+	text-align:center;
+	border-style:dotted;
+	
+}
+
+.TituloCabecera{
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 30px;
+	color: #6666dd;
+}
+
+.pie{
+	width:100%;
+	text-align:left;
+	border-style:solid none none none;
+}
+
+.fontpie{
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 15px;
+	color: #6666dd;
+}
+
+
+.mainGrid{
+	width:100%;
+	text-align:center;
+	border-style:none;
+}
+
+.lowerGrid{
+	width:80%;
+	align:center;
+	border-style:none;
+}
+
+
+.mainTable{
+	background-color:white;
+	align:center;
+	border-style:solid double;
+	width:80%;
+}
+
+.editGrid{
+	background-color:#eeeeee;
+	align:center;
+	border-style:solid double;
+	width:80%;
+}
+
+.editText{
+	color:#6666dd;
+	font-weight:bold;
+}
+
+.editButtonsGrid{
+	width:80%;
+	align:center;
+	border-style:none;
+}
+
+.columnTable{
+	padding:5px;
+	spacing:10px;
+}
+
+.columnTable1{
+	width:5%;
+}
+
+.columnTable2{
+	width:10%;
+}
+
+.columnTable3{
+	width:30%;
+	text-align:center;
+}
+
+.columnTable4{
+	width:10%;
+	text-align:center;
+}
+
+.columnTable5{
+	width:30%;
+	text-align:center;
+}
+
+.columnTable6{
+	width:15%;
+}
+
+.error{
+	color:red;
+	font-weight:bold;
+}
+
+.searchCaption{
+	color:#6666dd;
+	font-weight:bold;
+}
