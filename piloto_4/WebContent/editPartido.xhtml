@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Liga de Futbol</title>
+    </h:head>
+    <h:body>
+<f:view>
+	<h:form>
+    	<h:panelGrid id="MainGrid" columns="2" columnClasses="columnGrid" styleClass="mainGrid">
+				<h:outputText value="#{msgs['editPartido.Local']}"></h:outputText>
+				<h:selectOneMenu id="equipoLocal" value="#{LigaBean.partido.equipoByIdEquipoLocal}">
+					<f:selectItems value="#{EquipoBean.equipos}"/>
+					<f:converter converterId="StringToEquipo"/>
+				</h:selectOneMenu>
+				
+				<h:outputText value="#{msgs['editPartido.Visitante']}"></h:outputText>
+				<h:selectOneMenu id="equipoVisitante" value="#{LigaBean.partido.equipoByIdEquipoVisitante}">
+					<f:selectItems value="#{EquipoBean.equipos}"/>
+					<f:converter converterId="StringToEquipo"/>
+				</h:selectOneMenu>
+				      
+				<h:outputText value="#{msgs['editPartido.Jornada']}"></h:outputText>
+				<h:selectOneMenu value="#{LigaBean.partido.jornada}">
+					<f:selectItems value="#{LigaBean.jornadas}"/>
+				</h:selectOneMenu>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+				
+				<h:outputText value="#{msgs['editPartido.Fecha']}"></h:outputText>
+				<h:inputText value="#{LigaBean.partido.fecha}"> 
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+				</h:inputText>
+				
+				<h:outputText value="#{msgs['editPartido.resultado']}"></h:outputText>
+				<h:panelGroup>
+				<h:inputText value="#{LigaBean.partido.golesLocal}" size="2"></h:inputText>-
+				<h:inputText value="#{LigaBean.partido.golesVisitante}" size="2"></h:inputText>
+				<h:selectBooleanCheckbox value="#{LigaBean.porJugar}"><h:outputText value="#{msgs['editPartido.porJugar']}"></h:outputText></h:selectBooleanCheckbox>
+				</h:panelGroup>
+				
+				<h:outputText value="#{msgs['editPartido.observaciones']}"></h:outputText>
+				<h:inputTextarea  value="#{LigaBean.partido.observaciones}" rows="10"></h:inputTextarea>
+				
+				
+				<h:commandButton value="#{msgs['editPartido.GuardarBt']}" action="listPartidos" actionListener="#{LigaBean.anyadirPartido}"></h:commandButton>
+				<h:commandButton value="#{msgs['editPartido.CancelarBt']}" immediate="true" action="listPartidos"></h:commandButton>
+				
+				<h:messages/>
+				
+		</h:panelGrid>
+	</h:form>
+</f:view>
+	</h:body>
+</html>
