@@ -51,35 +51,55 @@ public class PartidoDAOImpl implements PartidoDAO {
 	@SuppressWarnings("unchecked")
 	public List<Partido> findAll() {
 		List<Partido> lista=null;
-		Criteria crit = session.createCriteria(Partido.class);
-		lista = crit.list();
-		return lista;
+		
+		/*Criteria crit = session.createCriteria(Partido.class);
+		lista = crit.list(); */
+		
+		/* Query q = session.createQuery("From Partido"); */
+		
+		Query q = session.getNamedQuery("all");
+		return q.list();
+		
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Partido> findByJornada(String jornada) {
 		
-		Criteria crit = session.createCriteria(Partido.class);
+		/*Criteria crit = session.createCriteria(Partido.class);
 		crit.add(Restrictions.eq("jornada", Integer.parseInt(jornada)));
-		return crit.list();
+		return crit.list();*/
+		
+		/* Query q = session.createQuery("From Partido where jornada ="+jornada); */
+		
+		Query q = session.getNamedQuery("byJornada");
+		q.setInteger(0, Integer.valueOf(jornada));
+		return q.list();
 	}
 
 
 	@SuppressWarnings("unchecked")
 	public List<Partido> findByEquipo(String equipo) {
 			
-		Criteria crit = session.createCriteria(Partido.class);
+		/*Criteria crit = session.createCriteria(Partido.class);
 		
 		crit.createAlias("equipoByIdEquipoLocal", "local");
 		crit.createAlias("equipoByIdEquipoVisitante", "visitante");
 		
 		crit.add(Restrictions.or(Restrictions.eq("local.nombre",equipo).ignoreCase(),
-				Restrictions.eq("visitante.nombre",equipo).ignoreCase()));
+				Restrictions.eq("visitante.nombre",equipo).ignoreCase()));*/
 		
-		return crit.list();
+		/*String query = "From Partido p "
+				+"where lower(p.equipoByIdEquipoLocal.nombre)=:eq or"
+				+" lower(p.equipoByIdEquipoVisitante.nombre)=:eq";
+		
+		Query q = session.createQuery(query);
+		q.setParameter("eq", equipo); */
+		
+		Query q = session.getNamedQuery("byEquipo");
+		q.setString("eq", equipo.toLowerCase());
+		
+		return q.list();
 	}
-	
-	
 	
 	
 	@SuppressWarnings("unchecked")
